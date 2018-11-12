@@ -91,8 +91,18 @@ class ChannelPage extends React.PureComponent<Props> {
 
           <div className="channel-info__actions">
             <div className="channel-info__actions__group">
-              <SubscribeButton uri={permanentUrl} channelName={name} />
-              <ViewOnWebButton claimId={claimId} claimName={name} />
+              <SubscribeButton uri={`lbry://${permanentUrl}`} channelName={name} />
+              <Button
+                button="alt"
+                icon={icons.GLOBE}
+                label={__('Share Channel')}
+                onClick={() =>
+                  openModal(
+                    { id: MODALS.SOCIAL_SHARE },
+                    { uri, speechShareable: true, isChannel: true }
+                  )
+                }
+              />
             </div>
           </div>
         </header>
