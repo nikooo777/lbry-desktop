@@ -69,7 +69,7 @@
     transition: width 0.2s;
   }
 
-  &:not(.active):not(&--title) {
+  &:not(&--active):not(&--title) {
     color: $lbry-gray-5;
 
     &::before {
@@ -77,18 +77,16 @@
     }
   }
 
-  &:not(&--title) {
-    &:hover,
-    &.active {
-      color: $lbry-black;
+  &:not(&--title):hover,
+  &--active {
+    color: $lbry-black;
 
-      html[data-theme='dark'] & {
-        color: $lbry-gray-1;
-      }
+    html[data-theme='dark'] & {
+      color: $lbry-gray-1;
+    }
 
-      &::before {
-        width: 0.5rem;
-      }
+    &::before {
+      width: 0.5rem;
     }
   }
 
@@ -125,7 +123,7 @@
     transition: background-color 0.2s;
   }
 
-  &:not(.active) {
+  &:not(&--active) {
     color: $lbry-gray-5;
 
     &::before {
@@ -134,7 +132,7 @@
   }
 
   &:hover,
-  &.active {
+  &--active {
     &::before {
       background-color: $lbry-black;
 

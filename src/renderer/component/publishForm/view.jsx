@@ -35,7 +35,6 @@ type Props = {
   },
   channel: string,
   name: ?string,
-  tosAccepted: boolean,
   updatePublishForm: UpdatePublishFormData => void,
   nameError: ?string,
   isResolvingUri: boolean,
@@ -123,7 +122,7 @@ class PublishForm extends React.PureComponent<Props> {
     const { channel, updatePublishForm } = this.props;
 
     if (!name) {
-      updatePublishForm({ nameError: undefined });
+      updatePublishForm({ name: '', nameError: __('A name is required.') });
       return;
     }
 
@@ -248,7 +247,6 @@ class PublishForm extends React.PureComponent<Props> {
       title,
       bid,
       bidError,
-      tosAccepted,
       editingURI,
       isStillEditing,
       filePath,
@@ -262,7 +260,6 @@ class PublishForm extends React.PureComponent<Props> {
       title &&
       bid &&
       !bidError &&
-      tosAccepted &&
       !(uploadThumbnailStatus === THUMBNAIL_STATUSES.IN_PROGRESS);
     return editingURI && !filePath ? isStillEditing && formValidLessFile : formValidLessFile;
   }
@@ -274,7 +271,6 @@ class PublishForm extends React.PureComponent<Props> {
       title,
       bid,
       bidError,
-      tosAccepted,
       editingURI,
       filePath,
       isStillEditing,
@@ -296,7 +292,6 @@ class PublishForm extends React.PureComponent<Props> {
           {uploadThumbnailStatus === THUMBNAIL_STATUSES.IN_PROGRESS && (
             <div>{__('Please wait for thumbnail to finish uploading')}</div>
           )}
-          {!tosAccepted && <div>{__('You must agree to the Terms of Service')}</div>}
           {!!editingURI &&
             !isStillEditing &&
             !filePath && <div>{__('You need to reselect a file after changing the LBRY URL')}</div>}
@@ -319,7 +314,6 @@ class PublishForm extends React.PureComponent<Props> {
       price,
       channel,
       name,
-      tosAccepted,
       updatePublishForm,
       bid,
       nameError,
@@ -373,14 +367,13 @@ class PublishForm extends React.PureComponent<Props> {
           )}
           <div className="card__content">
             <FileSelector currentPath={filePath} onFileChosen={this.handleFileChange} />
-            {!!isStillEditing &&
-              name && (
-                <p className="card__content card__subtitle">
-                  {__("If you don't choose a file, the file from your existing claim")}
-                  {` "${name}" `}
-                  {__('will be used.')}
-                </p>
-              )}
+            {!!isStillEditing && name && (
+              <p className="card__content card__subtitle">
+                {__("If you don't choose a file, the file from your existing claim")}
+                {` "${name}" `}
+                {__('will be used.')}
+              </p>
+            )}
           </div>
         </section>
         <div className={classnames({ 'card--disabled': formDisabled })}>
@@ -539,7 +532,7 @@ class PublishForm extends React.PureComponent<Props> {
                 step="any"
                 label={__('Deposit')}
                 postfix="LBC"
-                value={bid || ''}
+                value={bid}
                 error={bidError}
                 min="0"
                 disabled={!name}
@@ -609,27 +602,14 @@ class PublishForm extends React.PureComponent<Props> {
           </section>
 
           <section className="card card--section">
-            <header className="card__header">
-              <h2 className="card__title">{__('Terms of Service')}</h2>
-            </header>
-
             <div className="card__content">
-              <FormField
-                name="lbry_tos"
-                type="checkbox"
-                checked={tosAccepted}
-                postfix={
-                  <span>
-                    {__('I agree to the')}{' '}
-                    <Button
-                      button="link"
-                      href="https://www.lbry.io/termsofservice"
-                      label={__('LBRY Terms of Service')}
-                    />
-                  </span>
-                }
-                onChange={event => updatePublishForm({ tosAccepted: event.target.checked })}
+              {__('By continuing, you accept the')}{' '}
+              <Button
+                button="link"
+                href="https://www.lbry.io/termsofservice"
+                label={__('LBRY Terms of Service')}
               />
+              .
             </div>
           </section>
 
@@ -647,9 +627,9 @@ class PublishForm extends React.PureComponent<Props> {
                 <Button button="alt" onClick={this.handleCancelPublish} label={__('Cancel')} />
               </div>
             </div>
-
-            {!formDisabled && !formValid && this.renderFormErrors()}
           </section>
+
+          {!formDisabled && !formValid && this.renderFormErrors()}
         </div>
       </Form>
     );

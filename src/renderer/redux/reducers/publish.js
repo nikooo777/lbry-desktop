@@ -20,7 +20,6 @@ type PublishState = {
   uploadThumbnailStatus: string,
   description: string,
   language: string,
-  tosAccepted: boolean,
   channel: string,
   channelId: ?string,
   name: string,
@@ -29,7 +28,6 @@ type PublishState = {
   bidError: ?string,
   otherLicenseDescription: string,
   licenseUrl: string,
-  pendingPublishes: Array<any>,
 };
 
 export type UpdatePublishFormData = {
@@ -45,7 +43,6 @@ export type UpdatePublishFormData = {
   thumbnailPath?: string,
   description?: string,
   language?: string,
-  tosAccepted?: boolean,
   channel?: string,
   channelId?: string,
   name?: string,
@@ -104,7 +101,6 @@ const defaultState: PublishState = {
   nsfw: false,
   channel: CHANNEL_ANONYMOUS,
   channelId: '',
-  tosAccepted: false,
   name: '',
   nameError: undefined,
   bid: 0.1,
@@ -115,7 +111,6 @@ const defaultState: PublishState = {
   publishing: false,
   publishSuccess: false,
   publishError: undefined,
-  pendingPublishes: [],
 };
 
 export default handleActions(
@@ -127,10 +122,9 @@ export default handleActions(
         ...data,
       };
     },
-    [ACTIONS.CLEAR_PUBLISH]: (state: PublishState): PublishState => {
-      const { pendingPublishes } = state;
-      return { ...defaultState, pendingPublishes };
-    },
+    [ACTIONS.CLEAR_PUBLISH]: (): PublishState => ({
+      ...defaultState,
+    }),
     [ACTIONS.PUBLISH_START]: (state: PublishState): PublishState => ({
       ...state,
       publishing: true,
@@ -139,29 +133,11 @@ export default handleActions(
       ...state,
       publishing: false,
     }),
-    [ACTIONS.PUBLISH_SUCCESS]: (state: PublishState, action): PublishState => {
-      const { pendingPublish } = action.data;
-
-      const newPendingPublishes = state.pendingPublishes.slice();
-
-      newPendingPublishes.push(pendingPublish);
-
-      return {
-        ...state,
-        publishing: false,
-        pendingPublishes: newPendingPublishes,
-      };
-    },
-    [ACTIONS.REMOVE_PENDING_PUBLISH]: (state: PublishState, action) => {
-      const { name } = action.data;
-      const pendingPublishes = state.pendingPublishes.filter(publish => publish.name !== name);
-      return {
-        ...state,
-        pendingPublishes,
-      };
-    },
+    [ACTIONS.PUBLISH_SUCCESS]: (state: PublishState): PublishState => ({
+      ...state,
+      publishing: false,
+    }),
     [ACTIONS.DO_PREPARE_EDIT]: (state: PublishState, action) => {
-      const { pendingPublishes } = state;
       const { ...publishData } = action.data;
       const { channel, name, uri } = publishData;
 
@@ -175,7 +151,6 @@ export default handleActions(
       return {
         ...defaultState,
         ...publishData,
-        pendingPublishes,
         editingURI: uri,
         uri: shortUri,
       };

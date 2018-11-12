@@ -121,7 +121,7 @@ export class FormField extends React.PureComponent<Props> {
           </label>
         )}
         <div
-          className={classnames('form-field__input form-field__input--level', {
+          className={classnames('form-field__input', {
             'form-field--auto-height': type === 'markdown',
           })}
         >

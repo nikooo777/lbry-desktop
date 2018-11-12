@@ -26,7 +26,6 @@ type VersionInfo = {
   os_release: string,
   platform: string,
   lbrynet_version: string,
-  lbryum_version: string,
 };
 
 type State = {
@@ -176,7 +175,7 @@ class HelpPage extends React.PureComponent<Props, State> {
               button="primary"
               label={__('Open Log Folder')}
               icon={icons.REPORT}
-              onClick={() => shell.showItemInFolder(dataDirectory)}
+              onClick={() => shell.openItem(dataDirectory)}
             />
           </div>
         </section>
@@ -226,10 +225,6 @@ class HelpPage extends React.PureComponent<Props, State> {
                 <tr>
                   <td>{__('Daemon (lbrynet)')}</td>
                   <td>{ver.lbrynet_version}</td>
-                </tr>
-                <tr>
-                  <td>{__('Wallet (lbryum)')}</td>
-                  <td>{ver.lbryum_version}</td>
                 </tr>
                 <tr>
                   <td>{__('Connected Email')}</td>

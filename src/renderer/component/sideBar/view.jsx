@@ -2,7 +2,6 @@
 import * as React from 'react';
 import Button from 'component/button';
 import classnames from 'classnames';
-import * as NOTIFICATION_TYPES from 'constants/notification_types';
 
 type SideBarLink = {
   label: string,
@@ -17,14 +16,11 @@ type Props = {
     primary: Array<SideBarLink>,
     secondary: Array<SideBarLink>,
   },
-  notifications: {
-    type: string,
-  },
+  unreadSubscriptionTotal: number,
 };
 
 const SideBar = (props: Props) => {
-  const { navLinks, notifications } = props;
-  const badges = Object.keys(notifications).length;
+  const { navLinks, unreadSubscriptionTotal } = props;
 
   return (
     <nav className="navigation">
@@ -32,10 +28,14 @@ const SideBar = (props: Props) => {
         {navLinks.primary.map(({ label, path, active }) => (
           <Button
             className={classnames('navigation__link', {
-              active,
+              'navigation__link--active': active,
             })}
             key={path}
-            label={path === '/subscriptions' && badges ? `${label} (${badges})` : label}
+            label={
+              path === '/subscriptions' && unreadSubscriptionTotal
+                ? `${label} (${unreadSubscriptionTotal})`
+                : label
+            }
             navigate={path}
           />
         ))}
@@ -46,7 +46,7 @@ const SideBar = (props: Props) => {
           {navLinks.secondary.map(({ label, path, active, subLinks = [] }) => (
             <li
               className={classnames('navigation__link', {
-                active,
+                'navigation__link--active': active,
               })}
               key={label}
             >
@@ -64,7 +64,7 @@ const SideBar = (props: Props) => {
                     {subLinks.map(({ active: subLinkActive, label: subLabel, path: subPath }) => (
                       <li
                         className={classnames('navigation__link__item', {
-                          active: subLinkActive,
+                          'navigation__link__item--active': subLinkActive,
                         })}
                         key={subPath}
                       >

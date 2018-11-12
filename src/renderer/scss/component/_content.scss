@@ -1,6 +1,7 @@
 .content {
   flex: 1 0 var(--file-page-min-width);
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
 
   // &::after {

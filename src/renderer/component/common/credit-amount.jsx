@@ -14,7 +14,7 @@ type Props = {
   showLBC?: boolean,
   fee?: boolean,
   inheritStyle?: boolean,
-  filePage?: boolean,
+  badge?: boolean,
 };
 
 class CreditAmount extends React.PureComponent<Props> {
@@ -38,7 +38,7 @@ class CreditAmount extends React.PureComponent<Props> {
       fee,
       showLBC,
       inheritStyle,
-      filePage,
+      badge,
     } = this.props;
 
     const minimumRenderableAmount = 10 ** (-1 * precision);
@@ -77,12 +77,24 @@ class CreditAmount extends React.PureComponent<Props> {
     return (
       <span
         title={fullPrice}
+        // className={classnames('credit-amount', {
+        //   'credit-amount--large': large,
+        //   // TODO: remove inheritStyle prop
+        //   // It just complicates things
+        //   'credit-amount--inherit': inheritStyle,
+        //   badge,
+        //   'badge--cost': badge && !isFree,
+        //   'badge--free': badge && isFree,
+        // })}
         className={classnames('media__property media__property--amount', {
-          'media__property--amount-free': !large && isFree,
-          'media__property--amount-cost': !large && !isFree,
-          'media__property--amount-large': large,
+          badge,
+          'media__property--amount-cost': badge && !isFree,
+          'media__property--amount-free': badge && isFree,
+          // TODO: remove inheritStyle prop
+          // It just complicates things
           'media__property--amount-inherit': inheritStyle,
-          'media__property--amount-file-page': filePage,
+          'media__property--amount-large': large,
+          // 'media__property--amount-file-page': filePage,
         })}
       >
         {amountText}

@@ -1,15 +1,16 @@
 # LBRY App
 
+[![MIT licensed](https://img.shields.io/dub/l/vibe-d.svg?style=flat)](https://github.com/lbryio/lbry-desktop/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/lbryio/lbry-desktop.svg)](https://GitHub.com/lbryio/lbry-desktop/releases/)
 [![Build Status](https://travis-ci.org/lbryio/lbry-desktop.svg?branch=master)](https://travis-ci.org/lbryio/lbry-desktop)
 [![Dependencies](https://david-dm.org/lbryio/lbry-desktop/status.svg)](https://david-dm.org/lbryio/lbry-desktop)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/78b627d4f5524792adc48719835e1523)](https://www.codacy.com/app/LBRY/lbry-desktop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lbryio/lbry-desktop&amp;utm_campaign=Badge_Grade)
 [![chat on Discord](https://img.shields.io/discord/362322208485277697.svg?logo=discord)](https://chat.lbry.io)
 
 [![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](https://forthebadge.com)
 
 The LBRY app is a graphical browser for the decentralized content marketplace provided by the
 [LBRY](https://lbry.io) protocol. It is essentially the
-[lbry daemon](https://github.com/lbryio/lbry) bundled with an UI using
+[lbry daemon](https://github.com/lbryio/lbry) bundled with a UI using
 [Electron](https://electron.atom.io/).
 
 ![App GIF](https://spee.ch/7/lbry-redesign-preview.gif)
@@ -29,16 +30,16 @@ release, pre-releases, and past builds.
 
 To install from source or make changes to the application, continue to the next section below.   
 
-**Community maintained** builds for Arch Linux and Flatpak are available, see below. These installs will need to be updated manually as the in-app update process only supports deb installs at this time.
+**Community maintained** builds for Arch Linux and Flatpak are available, see below. These installs will need to be updated manually as the in-app update process only supports Debian installs at this time.
 *Note: If coming from a deb install, the directory structure is different and you'll need to [migrate data](https://lbry.io/faq/backup-data).*
 
 |                       | Flatpak                                   | Arch  | Raspberry Pi       |                                                                                                                              
 | --------------------- | ------------------------------------------|------------------| --------------------------------------------
-| Latest Release        | [FlatHub Page](https://flathub.org/apps/details/io.lbry.lbry-app)   | [AUR Package](https://aur.archlinux.org/packages/lbry-app-bin/)  | [Pi Installer](https://lbrypi.com)  | 
+| Latest Release        | [FlatHub Page](https://flathub.org/apps/details/io.lbry.lbry-app)   | [AUR Package](https://aur.archlinux.org/packages/lbry-app-bin/)  | [Pi Installer](https://lbrypi.com)  |
 | Maintainers           | [@choofee](https://github.com/choffee)/[@iuyte](https://github.com/iuyte)    | [@kcseb](https://github.com/kcseb)/[@TimurKiyivinski](https://github.com/TimurKiyivinski) |[@Madiator2011](https://github.com/kodxana)
 
 ## Usage
-Double click the installed application to browse with the LBRY network.
+Double click the installed application to interact with the LBRY network.
 
 ## Running from Source
 
@@ -63,13 +64,14 @@ distributable packages.
 
 If the app isn't building, or `yarn xxx` commands aren't working you may need to just reset your `node_modules`. To do so you can run: `rm -r node_modules && yarn` or `del /s /q node_modules && yarn` on Windows.
 
-## Contributing
+## Contributing 
+We :heart: contributions from everyone and contributions to this project are encouraged, and compensated. We welcome [bug reports](https://github.com/lbryio/lbry-desktop/issues/), [bug fixes](https://github.com/lbryio/lbry-desktop/pulls) and feedback is always appreciated. For more details, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Contributions to this project are welcome, encouraged, and compensated. For more details, see [CONTRIBUTING.md](CONTRIBUTING.md)
+## [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/lbryio/lbry-desktop/issues) [![GitHub contributors](https://img.shields.io/github/contributors/lbryio/lbry-desktop.svg)](https://GitHub.com/lbryio/lbry-desktop/graphs/contributors/)
 
 ## License
 
-This project is MIT licensed. For the full license, see [LICENSE](LICENSE)
+This project is MIT licensed. For the full license, see [LICENSE](LICENSE).
 
 ## Security
 
@@ -77,4 +79,4 @@ We take security seriously. Please contact security@lbry.io regarding any securi
 
 ## Contact
 
-The primary contact for this project is [@seanyesmunt](https://github.com/seanyesmunt)
+The primary contact for this project is [@seanyesmunt](https://github.com/seanyesmunt).

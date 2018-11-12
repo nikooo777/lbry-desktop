@@ -4,11 +4,13 @@ import BusyIndicator from 'component/common/busy-indicator';
 import { FormField, FormRow } from 'component/common/form';
 import ReactPaginate from 'react-paginate';
 import SubscribeButton from 'component/subscribeButton';
-import ViewOnWebButton from 'component/viewOnWebButton';
 import Page from 'component/page';
 import FileList from 'component/fileList';
 import HiddenNsfwClaims from 'component/hiddenNsfwClaims';
 import type { Claim } from 'types/claim';
+import Button from 'component/button';
+import { MODALS } from 'lbry-redux';
+import * as icons from 'constants/icons';
 
 type Props = {
   uri: string,
@@ -22,6 +24,7 @@ type Props = {
   fetchClaims: (string, number) => void,
   fetchClaimCount: string => void,
   navigate: (string, {}) => void,
+  openModal: ({ id: string }, { uri: string }) => void,
 };
 
 class ChannelPage extends React.PureComponent<Props> {

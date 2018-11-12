@@ -2,8 +2,6 @@
 import React from 'react';
 import FileTile from 'component/fileTile';
 import type { Claim } from 'types/claim';
-import { FormField, FormRow } from 'component/common/form';
-import ToolTip from 'component/common/tooltip';
 
 type Props = {
   uri: string,
@@ -11,7 +9,6 @@ type Props = {
   recommendedContent: Array<string>,
   isSearching: boolean,
   search: string => void,
-  autoplay: boolean,
 };
 
 export default class RecommendedContent extends React.PureComponent<Props> {
@@ -50,24 +47,10 @@ export default class RecommendedContent extends React.PureComponent<Props> {
   didSearch: ?boolean;
 
   render() {
-    const { recommendedContent, isSearching, autoplay } = this.props;
+    const { recommendedContent, isSearching } = this.props;
 
     return (
       <section className="media-group--list--recommended">
-        <FormRow>
-          <span>Related</span>
-
-          <ToolTip direction="right" body={__('Automatically download and play free content.')}>
-            <FormField
-              name="autoplay"
-              type="checkbox"
-              postfix={__('Autoplay')}
-              checked={autoplay}
-              onChange={this.onAutoplayChange}
-            />
-          </ToolTip>
-        </FormRow>
-
         {recommendedContent &&
           recommendedContent.map(recommendedUri => (
             <FileTile

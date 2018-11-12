@@ -51,6 +51,7 @@ input {
     }
   }
 
+  // TODO: These need to be their own styles
   &:not(.input-copyable):not(.wunderbar__input) {
     border-bottom: var(--input-border-size) solid $lbry-gray-5;
   }

@@ -292,10 +292,7 @@
     padding-left: 0.55rem;
   }
 
-  &--amount {
-  }
-
-  &--amount-cost {
+  &--amount:not(&--amount-large) {
     background-color: $lbry-yellow-2;
 
     html[data-theme='dark'] & {
@@ -304,7 +301,10 @@
     }
   }
 
-  &--amount-file-page {
+  &--amount-cost {
+  }
+
+  .media__properties--file-page & {
     align-items: center;
     display: inline-flex;
     position: relative;

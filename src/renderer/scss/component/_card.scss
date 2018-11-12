@@ -70,7 +70,9 @@
 }
 
 .card__header {
-  margin-bottom: 3rem;
+  &:not(&--flat) {
+    margin-bottom: 3rem;
+  }
 }
 
 .card-media__internal-links {
