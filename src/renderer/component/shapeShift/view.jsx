@@ -4,23 +4,17 @@ import { Formik } from 'formik';
 import { validateShapeShiftForm } from 'util/shape_shift';
 import Button from 'component/button';
 import type { ShapeShiftState } from 'redux/reducers/shape_shift';
-import type { ShapeShiftFormValues, Action } from 'redux/actions/shape_shift';
-import type { Dispatch, ThunkAction } from 'types/redux';
-import type { FormikActions } from 'types/common';
-
+import type { Dispatch, ShapeShiftFormValues } from 'redux/actions/shape_shift';
 import ShapeShiftForm from './internal/form';
 import ActiveShapeShift from './internal/active-shift';
 
 type Props = {
   shapeShift: ShapeShiftState,
-  getCoinStats: string => (Dispatch<Action>) => ThunkAction<Action>,
-  createShapeShift: (
-    ShapeShiftFormValues,
-    FormikActions
-  ) => (Dispatch<Action>) => ThunkAction<Action>,
-  clearShapeShift: () => (Dispatch<Action>) => ThunkAction<Action>,
-  getActiveShift: string => (Dispatch<Action>) => ThunkAction<Action>,
-  shapeShiftInit: () => (Dispatch<Action>) => ThunkAction<Action>,
+  getCoinStats: Dispatch,
+  createShapeShift: Dispatch,
+  clearShapeShift: Dispatch,
+  getActiveShift: Dispatch,
+  shapeShiftInit: Dispatch,
   receiveAddress: string,
 };
 
@@ -48,6 +42,7 @@ class ShapeShift extends React.PureComponent<Props> {
     } = this.props;
 
     const {
+      loading,
       updating,
       error,
       shiftSupportedCoins,
@@ -73,13 +68,16 @@ class ShapeShift extends React.PureComponent<Props> {
 
     return (
       <section className="card card--section">
-        <div className="card__title">{__('Convert Crypto to LBC')}</div>
-        <p className="card__subtitle">
-          {__('Powered by ShapeShift. Read our FAQ')}{' '}
-          <Button button="link" label={__('here')} href="https://lbry.io/faq/shapeshift" />.
-          {hasActiveShift &&
-            shiftState !== 'complete' && <span>{__('This will update automatically.')}</span>}
-        </p>
+        <header className="card__header">
+          <h2 className="card__title">{__('Convert Crypto to LBC')}</h2>
+
+          <p className="card__subtitle">
+            {__('Powered by ShapeShift. Read our FAQ')}{' '}
+            <Button button="link" label={__('here')} href="https://lbry.io/faq/shapeshift" />.
+            {hasActiveShift &&
+              shiftState !== 'complete' && <span>{__('This will update automatically.')}</span>}
+          </p>
+        </header>
 
         <div className="card__content">
           {error && <div className="form-field__error">{error}</div>}
@@ -109,7 +107,7 @@ class ShapeShift extends React.PureComponent<Props> {
               getActiveShift={getActiveShift}
               shiftCoinType={shiftCoinType}
               shiftReturnAddress={shiftReturnAddress}
-              shiftDepositAddress={shiftDepositAddress || ''}
+              shiftDepositAddress={shiftDepositAddress}
               shiftOrderId={shiftOrderId}
               shiftState={shiftState}
               clearShapeShift={clearShapeShift}

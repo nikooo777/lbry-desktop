@@ -9,7 +9,4 @@ const perform = dispatch => ({
   openModal: (modal, props) => dispatch(doNotify(modal, props)),
 });
 
-export default connect(
-  select,
-  perform
-)(ExternalLink);
+export default connect(select, perform)(ExternalLink);

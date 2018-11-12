@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { selectNavLinks } from 'redux/selectors/app';
-import { selectUnreadAmount } from 'redux/selectors/subscriptions';
+import { selectNotifications } from 'redux/selectors/subscriptions';
 import SideBar from './view';
 
 const select = state => ({
   navLinks: selectNavLinks(state),
-  unreadSubscriptionTotal: selectUnreadAmount(state),
+  notifications: selectNotifications(state),
 });
 
 const perform = () => ({});

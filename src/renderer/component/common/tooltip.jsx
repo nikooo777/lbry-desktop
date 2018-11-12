@@ -20,8 +20,9 @@ class ToolTip extends React.PureComponent<Props, State> {
     direction: 'bottom',
   };
 
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
+    this.tooltip = React.createRef();
     this.state = {
       direction: this.props.direction,
     };
@@ -32,11 +33,7 @@ class ToolTip extends React.PureComponent<Props, State> {
   }
 
   getVisibility = () => {
-    if (!this.tooltip) {
-      return;
-    }
-
-    const node = this.tooltip;
+    const node = this.tooltip.current;
     const rect = node.getBoundingClientRect();
 
     // Get parent-container
@@ -79,12 +76,10 @@ class ToolTip extends React.PureComponent<Props, State> {
     const visibility = this.getVisibility();
 
     // Invert direction if tooltip is outside viewport bounds
-    if (!visibility || !visibility[direction]) {
+    if (!visibility[direction]) {
       this.invertDirection();
     }
   };
-
-  tooltip: ?HTMLSpanElement;
 
   render() {
     const { direction } = this.state;
@@ -110,9 +105,7 @@ class ToolTip extends React.PureComponent<Props, State> {
       >
         {tooltipContent}
         <span
-          ref={ref => {
-            this.tooltip = ref;
-          }}
+          ref={this.tooltip}
           className={classnames('tooltip__body', {
             'tooltip__body--short': isShortDescription,
           })}

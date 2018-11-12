@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {
-  doSendTip,
+  doSendSupport,
   makeSelectTitleForUri,
   makeSelectClaimForUri,
   selectIsSendingSupport,
@@ -16,10 +16,7 @@ const select = (state, props) => ({
 });
 
 const perform = dispatch => ({
-  sendSupport: (amount, claimId, uri) => dispatch(doSendTip(amount, claimId, uri)),
+  sendSupport: (amount, claimId, uri) => dispatch(doSendSupport(amount, claimId, uri)),
 });
 
-export default connect(
-  select,
-  perform
-)(WalletSendTip);
+export default connect(select, perform)(WalletSendTip);

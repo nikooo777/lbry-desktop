@@ -21,7 +21,4 @@ const perform = dispatch => ({
   },
 });
 
-export default connect(
-  select,
-  perform
-)(ModalRemoveFile);
+export default connect(select, perform)(ModalRemoveFile);

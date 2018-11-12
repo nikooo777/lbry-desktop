@@ -6,7 +6,6 @@ export type FileInfo = {
   channelName: ?string,
   pending?: boolean,
   channel_claim_id: string,
-  file_name: string,
   value?: {
     publisherSignature: {
       certificateId: string,

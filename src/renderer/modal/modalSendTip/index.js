@@ -6,7 +6,4 @@ const perform = dispatch => ({
   closeModal: () => dispatch(doHideNotification()),
 });
 
-export default connect(
-  null,
-  perform
-)(ModalSendTip);
+export default connect(null, perform)(ModalSendTip);

@@ -1,11 +1,4 @@
 // @flow
-import type { Dispatch, GetState } from 'types/redux';
-import type { Source, Metadata } from 'types/claim';
-import type {
-  UpdatePublishFormData,
-  UpdatePublishFormAction,
-  PublishParams,
-} from 'redux/reducers/publish';
 import {
   ACTIONS,
   Lbry,
@@ -14,15 +7,20 @@ import {
   selectMyChannelClaims,
   THUMBNAIL_STATUSES,
   batchActions,
-  creditsToString,
-  selectPendingById,
-  selectMyClaimsWithoutChannels,
 } from 'lbry-redux';
+import { selectPendingPublishes } from 'redux/selectors/publish';
+import type {
+  UpdatePublishFormData,
+  UpdatePublishFormAction,
+  PublishParams,
+} from 'redux/reducers/publish';
 import { selectosNotificationsEnabled } from 'redux/selectors/settings';
 import { doNavigate } from 'redux/actions/navigation';
 import fs from 'fs';
 import path from 'path';
-import { CC_LICENSES, COPYRIGHT, OTHER, NONE, PUBLIC_DOMAIN } from 'constants/licenses';
+import { CC_LICENSES, COPYRIGHT, OTHER } from 'constants/licenses';
+import type { Dispatch, GetState } from 'types/redux';
+import type { Source } from 'types/claim';
 
 type Action = UpdatePublishFormAction | { type: ACTIONS.CLEAR_PUBLISH };
 
@@ -179,11 +177,8 @@ export const doPrepareEdit = (claim: any, uri: string) => (dispatch: Dispatch<Ac
   };
 
   // Make sure custom liscence's are mapped properly
-  // If the license isn't one of the standard licenses, map the custom license and description/url
   if (!CC_LICENSES.some(({ value }) => value === license)) {
-    if (!license || license === NONE || license === PUBLIC_DOMAIN) {
-      publishData.licenseType = license;
-    } else if (license && !licenseUrl && license !== NONE) {
+    if (!licenseUrl) {
       publishData.licenseType = COPYRIGHT;
     } else {
       publishData.licenseType = OTHER;
@@ -203,7 +198,6 @@ export const doPublish = (params: PublishParams) => (
 ) => {
   const state = getState();
   const myChannels = selectMyChannelClaims(state);
-  const myClaims = selectMyClaimsWithoutChannels(state);
 
   const {
     name,
@@ -228,13 +222,14 @@ export const doPublish = (params: PublishParams) => (
   const channelId = namedChannelClaim ? namedChannelClaim.claim_id : '';
   const fee = contentIsFree || !price.amount ? undefined : { ...price };
 
-  const metadata: Metadata = {
+  const metadata = {
     title,
     nsfw,
     license,
     licenseUrl,
     language,
     thumbnail,
+    fee: fee || undefined,
     description: description || undefined,
   };
 
@@ -242,22 +237,15 @@ export const doPublish = (params: PublishParams) => (
     name: ?string,
     channel_id: string,
     bid: ?number,
-    metadata: ?Metadata,
+    metadata: ?any,
     file_path?: string,
     sources?: Source,
   } = {
     name,
     channel_id: channelId,
-    bid: creditsToString(bid),
+    bid,
     metadata,
   };
-
-  if (fee) {
-    metadata.fee = {
-      currency: fee.currency,
-      amount: creditsToString(fee.amount),
-    };
-  }
 
   if (filePath) {
     publishPayload.file_path = filePath;
@@ -267,32 +255,12 @@ export const doPublish = (params: PublishParams) => (
 
   dispatch({ type: ACTIONS.PUBLISH_START });
 
-  const success = pendingClaim => {
-    const actions = [];
-
-    actions.push({
+  const success = () => {
+    dispatch({
       type: ACTIONS.PUBLISH_SUCCESS,
+      data: { pendingPublish: { ...publishPayload } },
     });
-
-    actions.push(doNotify({ id: MODALS.PUBLISH }, { uri }));
-
-    // We have to fake a temp claim until the new pending one is returned by claim_list_mine
-    // We can't rely on claim_list_mine because there might be some delay before the new claims are returned
-    // Doing this allows us to show the pending claim immediately, it will get overwritten by the real one
-    const isMatch = claim => claim.claim_id === pendingClaim.claim_id;
-    const isEdit = myClaims.some(isMatch);
-    const myNewClaims = isEdit
-      ? myClaims.map(claim => (isMatch(claim) ? pendingClaim.output : claim))
-      : myClaims.concat(pendingClaim.output);
-
-    actions.push({
-      type: ACTIONS.FETCH_CLAIM_LIST_MINE_COMPLETED,
-      data: {
-        claims: myNewClaims,
-      },
-    });
-
-    dispatch(batchActions(...actions));
+    dispatch(doNotify({ id: MODALS.PUBLISH }, { uri }));
   };
 
   const failure = error => {
@@ -306,22 +274,28 @@ export const doPublish = (params: PublishParams) => (
 // Calls claim_list_mine until any pending publishes are confirmed
 export const doCheckPendingPublishes = () => (dispatch: Dispatch<Action>, getState: GetState) => {
   const state = getState();
-  const pendingById = selectPendingById(state);
-
-  if (!Object.keys(pendingById).length) {
-    return;
-  }
+  const pendingPublishes = selectPendingPublishes(state);
 
   let publishCheckInterval;
 
   const checkFileList = () => {
     Lbry.claim_list_mine().then(claims => {
-      claims.forEach(claim => {
-        // If it's confirmed, check if it was pending previously
-        if (claim.confirmations > 0 && pendingById[claim.claim_id]) {
-          delete pendingById[claim.claim_id];
+      const pendingPublishMap = {};
+      pendingPublishes.forEach(({ name }) => {
+        pendingPublishMap[name] = name;
+      });
 
-          // If it's confirmed, check if we should notify the user
+      const actions = [];
+      claims.forEach(claim => {
+        if (pendingPublishMap[claim.name]) {
+          actions.push({
+            type: ACTIONS.REMOVE_PENDING_PUBLISH,
+            data: {
+              name: claim.name,
+            },
+          });
+
+          delete pendingPublishMap[claim.name];
           if (selectosNotificationsEnabled(getState())) {
             const notif = new window.Notification('LBRY Publish Complete', {
               body: `${claim.value.stream.metadata.title} has been published to lbry://${
@@ -340,20 +314,25 @@ export const doCheckPendingPublishes = () => (dispatch: Dispatch<Action>, getSta
         }
       });
 
-      dispatch({
+      actions.push({
         type: ACTIONS.FETCH_CLAIM_LIST_MINE_COMPLETED,
         data: {
           claims,
         },
       });
 
-      if (!Object.keys(pendingById).length) {
+      dispatch(batchActions(...actions));
+
+      if (!Object.keys(pendingPublishMap).length) {
         clearInterval(publishCheckInterval);
       }
     });
   };
 
-  publishCheckInterval = setInterval(() => {
+  if (pendingPublishes.length) {
     checkFileList();
-  }, 30000);
+    publishCheckInterval = setInterval(() => {
+      checkFileList();
+    }, 30000);
+  }
 };

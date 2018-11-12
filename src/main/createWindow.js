@@ -16,7 +16,7 @@ export default appState => {
 
   const windowConfiguration = {
     backgroundColor: '#2f9176',
-    minWidth: 950,
+    minWidth: 600, // 950
     minHeight: 600,
     autoHideMenuBar: true,
     show: false,

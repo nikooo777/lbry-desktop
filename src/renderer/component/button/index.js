@@ -6,7 +6,4 @@ const perform = dispatch => ({
   doNavigate: (path, params) => dispatch(doNavigate(path, params)),
 });
 
-export default connect(
-  null,
-  perform
-)(Button);
+export default connect(null, perform)(Button);

@@ -159,6 +159,7 @@ class ChannelSection extends React.PureComponent<Props, State> {
           <FormField
             key="channel"
             type="select"
+            tabIndex="1"
             onChange={this.handleChannelChange}
             value={channel}
           >

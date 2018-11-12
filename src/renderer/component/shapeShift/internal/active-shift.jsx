@@ -5,20 +5,18 @@ import { FormRow } from 'component/common/form';
 import * as statuses from 'constants/shape_shift';
 import Address from 'component/address';
 import Button from 'component/button';
-import type { Dispatch, ThunkAction } from 'types/redux';
-import type { Action } from 'redux/actions/shape_shift';
-
+import type { Dispatch } from 'redux/actions/shape_shift';
 import ShiftMarketInfo from './market_info';
 
 type Props = {
   shiftState: ?string,
   shiftCoinType: ?string,
-  shiftDepositAddress: string,
+  shiftDepositAddress: ?string,
   shiftReturnAddress: ?string,
   shiftOrderId: ?string,
   originCoinDepositMax: ?number,
-  clearShapeShift: () => (Dispatch<Action>) => ThunkAction<Action>,
-  getActiveShift: string => (Dispatch<Action>) => ThunkAction<Action>,
+  clearShapeShift: Dispatch,
+  getActiveShift: Dispatch,
   shapeShiftRate: ?number,
   originCoinDepositMax: ?number,
   originCoinDepositFee: ?number,
@@ -80,9 +78,9 @@ class ActiveShapeShift extends React.PureComponent<Props> {
           <div>
             <p>
               Send up to{' '}
-              <span className="credit-amount--bold">
+              <strong>
                 {originCoinDepositMax} {shiftCoinType}
-              </span>{' '}
+              </strong>{' '}
               to the address below.
             </p>
             <ShiftMarketInfo

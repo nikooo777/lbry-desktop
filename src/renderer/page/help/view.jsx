@@ -26,6 +26,7 @@ type VersionInfo = {
   os_release: string,
   platform: string,
   lbrynet_version: string,
+  lbryum_version: string,
 };
 
 type State = {
@@ -119,8 +120,10 @@ class HelpPage extends React.PureComponent<Props, State> {
     return (
       <Page>
         <section className="card card--section">
-          <div className="card__title">{__('Read the FAQ')}</div>
-          <p className="card__subtitle">{__('Our FAQ answers many common questions.')}</p>
+          <header className="card__header">
+            <h2 className="card__title">{__('Read the FAQ')}</h2>
+            <p className="card__subtitle">{__('Our FAQ answers many common questions.')}</p>
+          </header>
 
           <div className="card__actions">
             <Button
@@ -133,11 +136,15 @@ class HelpPage extends React.PureComponent<Props, State> {
         </section>
 
         <section className="card card--section">
-          <div className="card__title">{__('Get Live Help')}</div>
-          <p className="card__subtitle">
-            {__('Live help is available most hours in the')} <strong>#help</strong>{' '}
-            {__('channel of our Discord chat room.')}
-          </p>
+          <header className="card__header">
+            <h2 className="card__title">{__('Get Live Help')}</h2>
+
+            <p className="card__subtitle">
+              {__('Live help is available most hours in the')} <strong>#help</strong>{' '}
+              {__('channel of our Discord chat room.')}
+            </p>
+          </header>
+
           <div className="card__actions">
             <Button
               button="primary"
@@ -149,11 +156,15 @@ class HelpPage extends React.PureComponent<Props, State> {
         </section>
 
         <section className="card card--section">
-          <div className="card__title">{__('View your Log')}</div>
-          <p className="card__subtitle">
-            {__('Did something go wrong? Have a look in your log file, or send it to')}{' '}
-            <Button button="link" label={__('support')} href="https://lbry.io/faq/support" />.
-          </p>
+          <header className="card__header">
+            <h2 className="card__title">{__('View your Log')}</h2>
+
+            <p className="card__subtitle">
+              {__('Did something go wrong? Have a look in your log file, or send it to')}{' '}
+              <Button button="link" label={__('support')} href="https://lbry.io/faq/support" />.
+            </p>
+          </header>
+
           <div className="card__actions">
             <Button
               button="primary"
@@ -165,16 +176,20 @@ class HelpPage extends React.PureComponent<Props, State> {
               button="primary"
               label={__('Open Log Folder')}
               icon={icons.REPORT}
-              onClick={() => shell.openItem(dataDirectory)}
+              onClick={() => shell.showItemInFolder(dataDirectory)}
             />
           </div>
         </section>
 
         <section className="card card--section">
-          <div className="card__title">{__('Report a Bug or Suggest a New Feature')}</div>
-          <p className="card__subtitle">
-            {__('Did you find something wrong? Think LBRY could add something useful and cool?')}
-          </p>
+          <header className="card__header">
+            <h2 className="card__title">{__('Report a Bug or Suggest a New Feature')}</h2>
+
+            <p className="card__subtitle">
+              {__('Did you find something wrong? Think LBRY could add something useful and cool?')}
+            </p>
+          </header>
+
           <div className="card__actions">
             <Button
               navigate="/report"
@@ -183,19 +198,23 @@ class HelpPage extends React.PureComponent<Props, State> {
               button="primary"
             />
           </div>
+
           <div className="card__meta">{__('Thanks! LBRY is made by its users.')}</div>
         </section>
 
         <section className="card card--section">
-          <div className="card__title">{__('About')}</div>
-          {this.state.upgradeAvailable !== null && this.state.upgradeAvailable ? (
-            <div className="card__subtitle">
-              {__('A newer version of LBRY is available.')}{' '}
-              <Button button="link" href={newVerLink} label={__('Download now!')} />
-            </div>
-          ) : (
-            <div className="card__subtitle">{__('Your LBRY app is up to date.')}</div>
-          )}
+          <header className="card__header">
+            <h2 className="card__title">{__('About')}</h2>
+
+            {this.state.upgradeAvailable !== null && this.state.upgradeAvailable ? (
+              <p className="card__subtitle">
+                {__('A newer version of LBRY is available.')}{' '}
+                <Button button="link" href={newVerLink} label={__('Download now!')} />
+              </p>
+            ) : (
+              <p className="card__subtitle">{__('Your LBRY app is up to date.')}</p>
+            )}
+          </header>
 
           {this.state.uiVersion && ver ? (
             <table className="card__content table table--stretch table--help">
@@ -207,6 +226,10 @@ class HelpPage extends React.PureComponent<Props, State> {
                 <tr>
                   <td>{__('Daemon (lbrynet)')}</td>
                   <td>{ver.lbrynet_version}</td>
+                </tr>
+                <tr>
+                  <td>{__('Wallet (lbryum)')}</td>
+                  <td>{ver.lbryum_version}</td>
                 </tr>
                 <tr>
                   <td>{__('Connected Email')}</td>
@@ -250,7 +273,7 @@ class HelpPage extends React.PureComponent<Props, State> {
                       accessToken && (
                         <div>
                           <p>{accessToken}</p>
-                          <div className="help">
+                          <div className="alert-text">
                             {__('This is equivalent to a password. Do not post or share this.')}
                           </div>
                         </div>

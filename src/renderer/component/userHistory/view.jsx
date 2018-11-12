@@ -161,9 +161,7 @@ class UserHistoryPage extends React.PureComponent<Props, State> {
       </React.Fragment>
     ) : (
       <div className="page__empty">
-        <h3 className="card__title">
-          {__("You don't have anything saved in history yet, go check out some content on LBRY!")}
-        </h3>
+        {__("You don't have anything saved in history yet, go check out some content on LBRY!")}
         <div className="card__actions card__actions--center">
           <Button button="primary" navigate="/discover" label={__('Explore new content')} />
         </div>

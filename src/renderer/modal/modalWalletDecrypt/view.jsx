@@ -31,7 +31,7 @@ class ModalWalletDecrypt extends React.PureComponent<Props> {
   }
 
   render() {
-    const { closeModal } = this.props;
+    const { closeModalgaa } = this.props;
 
     return (
       <Modal

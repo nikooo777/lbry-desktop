@@ -17,7 +17,4 @@ const perform = dispatch => ({
   getNewAddress: () => dispatch(doGetNewAddress()),
 });
 
-export default connect(
-  select,
-  perform
-)(WalletAddress);
+export default connect(select, perform)(WalletAddress);

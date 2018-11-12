@@ -1,15 +1,13 @@
 // @flow
-import React, { Fragment } from 'react';
+import * as React from 'react';
 import Icon from 'component/common/icon';
 import * as icons from 'constants/icons';
 import Spinner from 'component/spinner';
-import Button from 'component/button';
 
 type Props = {
   message: string,
   details: ?string,
   isWarning: boolean,
-  error: boolean,
 };
 
 class LoadScreen extends React.PureComponent<Props> {
@@ -18,50 +16,27 @@ class LoadScreen extends React.PureComponent<Props> {
   };
 
   render() {
-    const { details, message, isWarning, error } = this.props;
+    const { details, message, isWarning } = this.props;
 
     return (
       <div className="load-screen">
         <div className="load-screen__header">
-          <h1 className="load-screen__title">{__('LBRY')}</h1>
-          <sup className="load-screen__beta">beta</sup>
+          <h1 className="load-screen__title">
+            {__('LBRY')}
+            <sup>beta</sup>
+          </h1>
         </div>
-        {error ? (
-          <Fragment>
-            <h3>{__('Uh oh. Sean must have messed something up. Try refreshing to fix it.')}</h3>
-            <div className="card__actions">
-              <Button label="Refresh" button="alt" onClick={() => window.location.reload()} />
-            </div>
-            <div className="load-screen--help">
-              <p>
-                {__(
-                  'If you still have issues, your anti-virus software or firewall may be preventing startup.'
-                )}
-              </p>
-              <p>
-                {__('Reach out to hello@lbry.io for help, or check out')}{' '}
-                <Button
-                  className="btn--load-screen"
-                  href="https://lbry.io/faq/startup-troubleshooting"
-                  label="this link"
-                />.
-              </p>
-            </div>
-          </Fragment>
+        {isWarning ? (
+          <span className="load-screen__message">
+            <Icon size={20} icon={icons.ALERT} />
+            {` ${message}`}
+          </span>
         ) : (
-          <Fragment>
-            {isWarning ? (
-              <span className="load-screen__message">
-                <Icon size={20} icon={icons.ALERT} />
-                {` ${message}`}
-              </span>
-            ) : (
-              <div className="load-screen__message">{message}</div>
-            )}
-            {details && <div className="load-screen__details">{details}</div>}
-            <Spinner type="splash" />
-          </Fragment>
+          <div className="load-screen__message">{message}</div>
         )}
+
+        {details && <div className="load-screen__details">{details}</div>}
+        <Spinner type="splash" />
       </div>
     );
   }

@@ -1,3 +1,5 @@
+import React from 'react';
+import { connect } from 'react-redux';
 import GetCreditsPage from './view';
 
-export default GetCreditsPage;
+export default connect(null, null)(GetCreditsPage);

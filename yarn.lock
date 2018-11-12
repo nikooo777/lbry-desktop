@@ -451,7 +451,7 @@ async-foreach@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/async-foreach/-/async-foreach-0.1.3.tgz#36121f845c0578172de419a97dbeb1d16ec34542"
 
-async@^0.9.0:
+async@^0.9.0, async@~0.9.0:
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/async/-/async-0.9.2.tgz#aea74d5e61c1f899613bf64bda66d4c78f2fd17d"
 
@@ -1051,7 +1051,7 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-polyfill@^6.26.0:
+babel-polyfill@^6.20.0, babel-polyfill@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-polyfill/-/babel-polyfill-6.26.0.tgz#379937abc67d7895970adc621f284cd966cf2153"
   dependencies:
@@ -2247,7 +2247,7 @@ copy-descriptor@^0.1.0:
 
 core-js@^1.0.0:
   version "1.2.7"
-  resolved "http://registry.npmjs.org/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
 core-js@^2.4.0, core-js@^2.5.0:
   version "2.5.7"
@@ -4076,7 +4076,7 @@ flatten@^1.0.2:
 
 flow-bin@^0.69.0:
   version "0.69.0"
-  resolved "http://registry.npmjs.org/flow-bin/-/flow-bin-0.69.0.tgz#053159a684a6051fcbf0b71a2eb19a9679082da6"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.69.0.tgz#053159a684a6051fcbf0b71a2eb19a9679082da6"
 
 flow-typed@^2.3.0:
   version "2.5.1"
@@ -4232,6 +4232,12 @@ fs-minipass@^1.2.5:
   resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-1.2.5.tgz#06c277218454ec288df77ada54a03b8702aacb9d"
   dependencies:
     minipass "^2.2.1"
+
+fs-path@^0.0.24:
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/fs-path/-/fs-path-0.0.24.tgz#21a4b8d7dce5bae6d208261955dbc2bcf1e75c06"
+  dependencies:
+    async "~0.9.0"
 
 fs-write-stream-atomic@^1.0.8:
   version "1.0.10"
@@ -4870,15 +4876,9 @@ iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
 
-iconv-lite@^0.4.17, iconv-lite@^0.4.23, iconv-lite@^0.4.4, iconv-lite@^0.4.5:
+iconv-lite@^0.4.17, iconv-lite@^0.4.23, iconv-lite@^0.4.4, iconv-lite@^0.4.5, iconv-lite@~0.4.13:
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.23.tgz#297871f63be507adcfbfca715d0cd0eed84e9a63"
-  dependencies:
-    safer-buffer ">= 2.1.2 < 3"
-
-iconv-lite@~0.4.13:
-  version "0.4.24"
-  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
@@ -5663,25 +5663,25 @@ lazy-val@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/lazy-val/-/lazy-val-1.0.3.tgz#bb97b200ef00801d94c317e29dc6ed39e31c5edc"
 
-lbry-redux@lbryio/lbry-redux#2375860d6269d0369418879c2531b1d48c4e47f2:
+lbry-redux@lbryio/lbry-redux:
   version "0.0.1"
-  resolved "https://codeload.github.com/lbryio/lbry-redux/tar.gz/2375860d6269d0369418879c2531b1d48c4e47f2"
+  resolved "https://codeload.github.com/lbryio/lbry-redux/tar.gz/a8e81949837171e94e649fce6f7c7a8b7faadd51"
   dependencies:
     proxy-polyfill "0.1.6"
     reselect "^3.0.0"
 
-lbry-redux@lbryio/lbry-redux#6139cede26a5c17a8ecfc8a5c0445568ee686255:
+lbry-redux@lbryio/lbry-redux#67cae46983d9fea90dd1e4c5bd121dd5077a3f0e:
   version "0.0.1"
-  resolved "https://codeload.github.com/lbryio/lbry-redux/tar.gz/6139cede26a5c17a8ecfc8a5c0445568ee686255"
+  resolved "https://codeload.github.com/lbryio/lbry-redux/tar.gz/67cae46983d9fea90dd1e4c5bd121dd5077a3f0e"
   dependencies:
     proxy-polyfill "0.1.6"
     reselect "^3.0.0"
 
-lbryinc@lbryio/lbryinc#7a458ea13ceceffa0191e73139f94e5c953f22b1:
+lbryinc@lbryio/lbryinc#de7ff055605b02a24821f0f9bab1d206eb7f235d:
   version "0.0.1"
-  resolved "https://codeload.github.com/lbryio/lbryinc/tar.gz/7a458ea13ceceffa0191e73139f94e5c953f22b1"
+  resolved "https://codeload.github.com/lbryio/lbryinc/tar.gz/de7ff055605b02a24821f0f9bab1d206eb7f235d"
   dependencies:
-    lbry-redux lbryio/lbry-redux#2375860d6269d0369418879c2531b1d48c4e47f2
+    lbry-redux lbryio/lbry-redux
     reselect "^3.0.0"
 
 lcid@^1.0.0:
@@ -7905,13 +7905,13 @@ react@^0.14.5:
     fbjs "^0.6.1"
 
 react@^16.3.0:
-  version "16.6.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.6.1.tgz#ee2aef4f0a09e494594882029821049772f915fe"
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
+    fbjs "^0.8.16"
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.11.0"
+    prop-types "^15.6.0"
 
 read-config-file@3.1.0, read-config-file@^3.0.0:
   version "3.1.0"
@@ -8503,13 +8503,6 @@ sax@>=0.6.0, sax@^1.2.4, sax@~1.2.1:
 sax@~1.1.1:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.1.6.tgz#5d616be8a5e607d54e114afae55b7eaf2fcc3240"
-
-scheduler@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.11.0.tgz#def1f1bfa6550cc57981a87106e65e8aea41a6b5"
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 schema-utils@^0.3.0:
   version "0.3.0"
@@ -9574,11 +9567,7 @@ typo-js@*:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/typo-js/-/typo-js-1.0.3.tgz#54d8ebc7949f1a7810908b6002c6841526c99d5a"
 
-ua-parser-js@^0.7.18:
-  version "0.7.19"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
-
-ua-parser-js@^0.7.9:
+ua-parser-js@^0.7.18, ua-parser-js@^0.7.9:
   version "0.7.18"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.18.tgz#a7bfd92f56edfb117083b69e31d2aa8882d4b1ed"
 
@@ -10163,8 +10152,8 @@ websocket-extensions@>=0.1.1:
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
 
 whatwg-fetch@>=0.10.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
 
 whatwg-fetch@^0.9.0:
   version "0.9.0"

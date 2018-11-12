@@ -66,10 +66,7 @@ class TransactionList extends React.PureComponent<Props> {
 
   render() {
     const { emptyMessage, rewards, transactions, slim, filterSetting } = this.props;
-
-    // The shorter "recent transactions" list shouldn't be filtered
-    const transactionList = slim ? transactions : transactions.filter(this.filterTransaction);
-
+    const transactionList = transactions.filter(this.filterTransaction);
     // Flow offers little support for Object.values() typing.
     // https://github.com/facebook/flow/issues/2221
     // $FlowFixMe
@@ -77,44 +74,49 @@ class TransactionList extends React.PureComponent<Props> {
 
     return (
       <React.Fragment>
-        {!transactionList.length && (
-          <p className="card__content">{emptyMessage || __('No transactions to list.')}</p>
-        )}
-        {!slim &&
-          !!transactionList.length && (
-            <div className="card__actions card__actions--between">
-              <FileExporter
-                data={transactionList}
-                label={__('Export')}
-                title={__('Export Transactions')}
-                filters={['nout']}
-                defaultPath={__('lbry-transactions-history')}
-              />
-              {!slim && (
-                <FormField
-                  type="select"
-                  value={filterSetting || TRANSACTIONS.ALL}
-                  onChange={this.handleFilterChanged}
-                  affixClass="form-field--align-center"
-                  prefix={__('Show')}
-                  postfix={
-                    <Button
-                      button="link"
-                      icon={icons.HELP}
-                      href="https://lbry.io/faq/transaction-types"
-                      title={__('Help')}
-                    />
-                  }
-                >
-                  {transactionTypes.map(tt => (
-                    <option key={tt} value={tt}>
-                      {__(`${this.capitalize(tt)}`)}
-                    </option>
-                  ))}
-                </FormField>
-              )}
+        <header className="card__header">
+          {!transactionList.length && (
+            <p className="card__content">{emptyMessage || __('No transactions to list.')}</p>
+          )}
+          {!slim &&
+            !!transactionList.length && (
+              <div className="card__actions">
+                <FileExporter
+                  data={transactionList}
+                  label={__('Export')}
+                  title={__('Export Transactions')}
+                  filters={['nout']}
+                  defaultPath={__('lbry-transactions-history')}
+                />
+              </div>
+            )}
+          {!slim && (
+            <div className="card__actions--top-corner">
+              <FormField
+                type="select"
+                value={filterSetting || TRANSACTIONS.ALL}
+                onChange={this.handleFilterChanged}
+                affixClass="form-field--align-center"
+                prefix={__('Show')}
+                postfix={
+                  <Button
+                    button="link"
+                    icon={icons.HELP}
+                    href="https://lbry.io/faq/transaction-types"
+                    title={__('Help')}
+                  />
+                }
+              >
+                {transactionTypes.map(tt => (
+                  <option key={tt} value={tt}>
+                    {__(`${this.capitalize(tt)}`)}
+                  </option>
+                ))}
+              </FormField>
             </div>
           )}
+        </header>
+
         {!!transactionList.length && (
           <table className="card__content table table--transactions table--stretch">
             <thead>

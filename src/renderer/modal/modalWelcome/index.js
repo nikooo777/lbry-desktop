@@ -11,7 +11,4 @@ const perform = dispatch => () => ({
   },
 });
 
-export default connect(
-  null,
-  perform
-)(ModalWelcome);
+export default connect(null, perform)(ModalWelcome);

@@ -6,7 +6,4 @@ const mapStateToProps = state => ({
   theme: selectTheme(state),
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(Spinner);
+export default connect(mapStateToProps, null)(Spinner);

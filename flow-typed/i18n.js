@@ -1,1 +1,1 @@
-declare function __(a: string, b?: string | number): string;
+declare function __(a: string): string;

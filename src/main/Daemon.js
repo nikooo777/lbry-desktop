@@ -3,7 +3,7 @@ import path from 'path';
 import { spawn, execSync } from 'child_process';
 
 export default class Daemon {
-  static path = process.env.LBRY_DAEMON || path.join(__static, 'daemon/lbrynet');
+  static path = process.env.LBRY_DAEMON || path.join(__static, 'daemon/lbrynet-daemon');
   subprocess;
   handlers;
 
@@ -12,12 +12,13 @@ export default class Daemon {
   }
 
   launch() {
-    this.subprocess = spawn(Daemon.path, ['start']);
+    console.log('Launching daemon:', Daemon.path);
+    this.subprocess = spawn(Daemon.path);
 
     this.subprocess.stdout.on('data', data => console.log(`Daemon: ${data}`));
     this.subprocess.stderr.on('data', data => console.error(`Daemon: ${data}`));
     this.subprocess.on('exit', () => this.fire('exit'));
-    this.subprocess.on('error', error => console.error(`Daemon error: ${error}`));
+    this.subprocess.on('error', error => console.error(`Daemon: ${error}`));
   }
 
   quit() {

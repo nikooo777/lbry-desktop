@@ -4,7 +4,6 @@ import {
   selectRecentTransactions,
   selectHasTransactions,
   selectIsFetchingTransactions,
-  doFetchClaimListMine,
 } from 'lbry-redux';
 import TransactionListRecent from './view';
 
@@ -16,10 +15,6 @@ const select = state => ({
 
 const perform = dispatch => ({
   fetchTransactions: () => dispatch(doFetchTransactions()),
-  fetchMyClaims: () => dispatch(doFetchClaimListMine()),
 });
 
-export default connect(
-  select,
-  perform
-)(TransactionListRecent);
+export default connect(select, perform)(TransactionListRecent);

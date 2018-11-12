@@ -51,20 +51,20 @@ class ChannelTile extends React.PureComponent<Props> {
       <section
         onClick={onClick}
         role="button"
-        className={classnames('file-tile card--link', {
-          'file-tile--small': size === 'small',
-          'file-tile--large': size === 'large',
+        className={classnames('tile card--link', {
+          'tile--small': size === 'small',
+          'tile--large': size === 'large',
         })}
       >
         <CardMedia title={channelName} thumbnail={null} />
-        <div className="file-tile__info">
-          {isResolvingUri && <div className="file-tile__title">{__('Loading...')}</div>}
+        <div className="tile__info">
+          {isResolvingUri && <div className="tile__title">{__('Loading...')}</div>}
           {!isResolvingUri && (
             <React.Fragment>
-              <div className="file-tile__title">
+              <div className="tile__title">
                 <TruncatedText text={channelName || uri} lines={1} />
               </div>
-              <div className="card__subtitle">
+              <div className="tile__subtitle">
                 {totalItems > 0 && (
                   <span>
                     {totalItems} {totalItems === 1 ? 'file' : 'files'}

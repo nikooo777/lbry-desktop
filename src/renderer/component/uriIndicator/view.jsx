@@ -38,12 +38,18 @@ class UriIndicator extends React.PureComponent<Props> {
     if (!claim) {
       return <span className="empty">{isResolvingUri ? 'Validating...' : 'Unused'}</span>;
     }
-    const { channel_name: channelName, signature_is_valid: signatureIsValid, value } = claim;
+
+    const {
+      channel_name: channelName,
+      has_signature: hasSignature,
+      signature_is_valid: signatureIsValid,
+      value,
+    } = claim;
 
     const channelClaimId =
       value && value.publisherSignature && value.publisherSignature.certificateId;
 
-    if (!channelName) {
+    if (!hasSignature || !channelName) {
       return <span className="channel-name">Anonymous</span>;
     }
 

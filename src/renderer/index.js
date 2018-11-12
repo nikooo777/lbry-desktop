@@ -206,5 +206,4 @@ const init = () => {
 
 init();
 
-/* eslint-enable react/jsx-filename-extension */
 /* eslint-enable no-console */

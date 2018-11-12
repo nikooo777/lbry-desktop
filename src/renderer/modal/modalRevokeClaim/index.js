@@ -11,7 +11,4 @@ const perform = dispatch => ({
   abandonClaim: (txid, nout) => dispatch(doAbandonClaim(txid, nout)),
 });
 
-export default connect(
-  select,
-  perform
-)(ModalRevokeClaim);
+export default connect(select, perform)(ModalRevokeClaim);

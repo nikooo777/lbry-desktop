@@ -10,7 +10,4 @@ const perform = dispatch => ({
   closeModal: () => dispatch(doHideNotification()),
 });
 
-export default connect(
-  select,
-  perform
-)(ModalFileTimeout);
+export default connect(select, perform)(ModalFileTimeout);

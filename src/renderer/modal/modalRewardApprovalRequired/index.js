@@ -11,7 +11,4 @@ const perform = dispatch => ({
   closeModal: () => dispatch(doHideNotification()),
 });
 
-export default connect(
-  null,
-  perform
-)(ModalRewardApprovalRequired);
+export default connect(null, perform)(ModalRewardApprovalRequired);

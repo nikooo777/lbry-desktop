@@ -1,53 +1,51 @@
 // @flow
-import type { Transaction } from 'component/transactionList/view';
-import React, { Fragment } from 'react';
+import React from 'react';
 import BusyIndicator from 'component/common/busy-indicator';
 import Button from 'component/button';
 import TransactionList from 'component/transactionList';
 import * as icons from 'constants/icons';
-import RefreshTransactionButton from 'component/transactionRefreshButton';
+import type { Transaction } from 'component/transactionList/view';
 
 type Props = {
   fetchTransactions: () => void,
   fetchingTransactions: boolean,
   hasTransactions: boolean,
   transactions: Array<Transaction>,
-  fetchMyClaims: () => void,
 };
 
 class TransactionListRecent extends React.PureComponent<Props> {
   componentDidMount() {
-    const { fetchMyClaims, fetchTransactions } = this.props;
-
-    fetchMyClaims();
-    fetchTransactions();
+    this.props.fetchTransactions();
   }
 
   render() {
     const { fetchingTransactions, hasTransactions, transactions } = this.props;
+
     return (
       <section className="card card--section">
-        <div className="card__title card--space-between">
-          {__('Recent Transactions')}
-          <RefreshTransactionButton />
-        </div>
-        <div className="card__subtitle">
-          {__('To view all of your transactions, navigate to the')}{' '}
-          <Button button="link" navigate="/history" label={__('transactions page')} />.
-        </div>
-        {fetchingTransactions &&
-          !hasTransactions && (
-            <div className="card__content">
-              <BusyIndicator message={__('Loading transactions')} />
-            </div>
-          )}
+        <header className="card__header">
+          <h2 className="card__title">{__('Recent Transactions')}</h2>
+
+          <p className="card__subtitle">
+            {__('To view all of your transactions, navigate to the')}{' '}
+            <Button button="link" navigate="/history" label={__('transactions page')} />.
+          </p>
+        </header>
+
+        {fetchingTransactions && (
+          <div className="card__content">
+            <BusyIndicator message={__('Loading transactions')} />
+          </div>
+        )}
+        {!fetchingTransactions && (
+          <TransactionList
+            slim
+            transactions={transactions}
+            emptyMessage={__("Looks like you don't have any recent transactions.")}
+          />
+        )}
         {hasTransactions && (
-          <Fragment>
-            <TransactionList
-              slim
-              transactions={transactions}
-              emptyMessage={__("Looks like you don't have any recent transactions.")}
-            />
+          <div className="card__content">
             <div className="card__actions">
               <Button
                 button="primary"
@@ -56,7 +54,7 @@ class TransactionListRecent extends React.PureComponent<Props> {
                 icon={icons.CLOCK}
               />
             </div>
-          </Fragment>
+          </div>
         )}
       </section>
     );

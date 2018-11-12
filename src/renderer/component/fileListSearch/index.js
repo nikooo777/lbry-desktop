@@ -8,4 +8,9 @@ const select = (state, props) => ({
   isSearching: selectIsSearching(state),
 });
 
-export default connect(select)(FileListSearch);
+const perform = () => ({});
+
+export default connect(
+  select,
+  perform
+)(FileListSearch);
