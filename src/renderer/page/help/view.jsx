@@ -124,13 +124,15 @@ class HelpPage extends React.PureComponent<Props, State> {
             <p className="card__subtitle">{__('Our FAQ answers many common questions.')}</p>
           </header>
 
-          <div className="card__actions">
-            <Button
-              href="https://lbry.io/faq"
-              label={__('Read the FAQ')}
-              icon={icons.HELP}
-              button="primary"
-            />
+          <div className="card__content">
+            <div className="card__actions">
+              <Button
+                href="https://lbry.io/faq"
+                label={__('Read the FAQ')}
+                icon={icons.HELP}
+                button="primary"
+              />
+            </div>
           </div>
         </section>
 
@@ -144,13 +146,15 @@ class HelpPage extends React.PureComponent<Props, State> {
             </p>
           </header>
 
-          <div className="card__actions">
-            <Button
-              button="primary"
-              label={__('Join Our Chat')}
-              icon={icons.MESSAGE}
-              href="https://chat.lbry.io"
-            />
+          <div className="card__content">
+            <div className="card__actions">
+              <Button
+                button="primary"
+                label={__('Join Our Chat')}
+                icon={icons.MESSAGE}
+                href="https://chat.lbry.io"
+              />
+            </div>
           </div>
         </section>
 
@@ -164,19 +168,21 @@ class HelpPage extends React.PureComponent<Props, State> {
             </p>
           </header>
 
-          <div className="card__actions">
-            <Button
-              button="primary"
-              label={__('Open Log')}
-              icon={icons.REPORT}
-              onClick={() => this.openLogFile(dataDirectory)}
-            />
-            <Button
-              button="primary"
-              label={__('Open Log Folder')}
-              icon={icons.REPORT}
-              onClick={() => shell.openItem(dataDirectory)}
-            />
+          <div className="card__content">
+            <div className="card__actions">
+              <Button
+                button="primary"
+                label={__('Open Log')}
+                icon={icons.REPORT}
+                onClick={() => this.openLogFile(dataDirectory)}
+              />
+              <Button
+                button="primary"
+                label={__('Open Log Folder')}
+                icon={icons.REPORT}
+                onClick={() => shell.openItem(dataDirectory)}
+              />
+            </div>
           </div>
         </section>
 
@@ -190,16 +196,18 @@ class HelpPage extends React.PureComponent<Props, State> {
             </p>
           </header>
 
-          <div className="card__actions">
-            <Button
-              navigate="/report"
-              label={__('Submit a Bug Report/Feature Request')}
-              icon={icons.REPORT}
-              button="primary"
-            />
-          </div>
+          <div className="card__content">
+            <div className="card__actions">
+              <Button
+                navigate="/report"
+                label={__('Submit a Bug Report/Feature Request')}
+                icon={icons.REPORT}
+                button="primary"
+              />
+            </div>
 
-          <div className="card__meta">{__('Thanks! LBRY is made by its users.')}</div>
+            <div className="card__meta">{__('Thanks! LBRY is made by its users.')}</div>
+          </div>
         </section>
 
         <section className="card card--section">
@@ -216,57 +224,57 @@ class HelpPage extends React.PureComponent<Props, State> {
             )}
           </header>
 
-          {this.state.uiVersion && ver ? (
-            <table className="card__content table table--stretch table--help">
-              <tbody>
-                <tr>
-                  <td>{__('App')}</td>
-                  <td>{this.state.uiVersion}</td>
-                </tr>
-                <tr>
-                  <td>{__('Daemon (lbrynet)')}</td>
-                  <td>{ver.lbrynet_version}</td>
-                </tr>
-                <tr>
-                  <td>{__('Connected Email')}</td>
-                  <td>
-                    {user && user.primary_email ? (
-                      <React.Fragment>
-                        {user.primary_email}{' '}
-                        <Button
-                          button="link"
-                          href={`https://lbry.io/list/edit/${accessToken}`}
-                          label={__('Update mailing preferences')}
-                        />
-                      </React.Fragment>
-                    ) : (
-                      <React.Fragment>
-                        <span className="empty">{__('none')} </span>
-                        <Button button="link" onClick={() => doAuth()} label={__('set email')} />
-                      </React.Fragment>
-                    )}
-                  </td>
-                </tr>
-                <tr>
-                  <td>{__('Reward Eligible')}</td>
-                  <td>{user && user.is_reward_approved ? __('Yes') : __('No')}</td>
-                </tr>
-                <tr>
-                  <td>{__('Platform')}</td>
-                  <td>{platform}</td>
-                </tr>
-                <tr>
-                  <td>{__('Installation ID')}</td>
-                  <td>{this.state.lbryId}</td>
-                </tr>
-                <tr>
-                  <td>{__('Access Token')}</td>
-                  <td>
-                    {this.state.accessTokenHidden && (
-                      <Button button="link" label={__('View')} onClick={this.showAccessToken} />
-                    )}
-                    {!this.state.accessTokenHidden &&
-                      accessToken && (
+          <div className="card__content">
+            {this.state.uiVersion && ver ? (
+              <table className="table table--stretch table--help">
+                <tbody>
+                  <tr>
+                    <td>{__('App')}</td>
+                    <td>{this.state.uiVersion}</td>
+                  </tr>
+                  <tr>
+                    <td>{__('Daemon (lbrynet)')}</td>
+                    <td>{ver.lbrynet_version}</td>
+                  </tr>
+                  <tr>
+                    <td>{__('Connected Email')}</td>
+                    <td>
+                      {user && user.primary_email ? (
+                        <React.Fragment>
+                          {user.primary_email}{' '}
+                          <Button
+                            button="link"
+                            href={`https://lbry.io/list/edit/${accessToken}`}
+                            label={__('Update mailing preferences')}
+                          />
+                        </React.Fragment>
+                      ) : (
+                        <React.Fragment>
+                          <span className="empty">{__('none')} </span>
+                          <Button button="link" onClick={() => doAuth()} label={__('set email')} />
+                        </React.Fragment>
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{__('Reward Eligible')}</td>
+                    <td>{user && user.is_reward_approved ? __('Yes') : __('No')}</td>
+                  </tr>
+                  <tr>
+                    <td>{__('Platform')}</td>
+                    <td>{platform}</td>
+                  </tr>
+                  <tr>
+                    <td>{__('Installation ID')}</td>
+                    <td>{this.state.lbryId}</td>
+                  </tr>
+                  <tr>
+                    <td>{__('Access Token')}</td>
+                    <td>
+                      {this.state.accessTokenHidden && (
+                        <Button button="link" label={__('View')} onClick={this.showAccessToken} />
+                      )}
+                      {!this.state.accessTokenHidden && accessToken && (
                         <div>
                           <p>{accessToken}</p>
                           <div className="alert-text">
@@ -274,13 +282,14 @@ class HelpPage extends React.PureComponent<Props, State> {
                           </div>
                         </div>
                       )}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          ) : (
-            <BusyIndicator message={__('Looking up version info')} />
-          )}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            ) : (
+              <BusyIndicator message={__('Looking up version info')} />
+            )}
+          </div>
         </section>
       </Page>
     );

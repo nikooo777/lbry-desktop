@@ -348,13 +348,16 @@ class PublishForm extends React.PureComponent<Props> {
     return (
       <Form onSubmit={this.handlePublish}>
         <section className={classnames('card card--section', { 'card--disabled': publishing })}>
-          <div className="card__title">{__('Content')}</div>
-          <div className="card__subtitle">
-            {isStillEditing ? __('Editing a claim') : __('What are you publishing?')}{' '}
-            {__('Read our')}{' '}
-            <Button button="link" label={__('FAQ')} href="https://lbry.io/faq/how-to-publish" />{' '}
-            {__('to learn more.')}
-          </div>
+          <header className="card__header">
+            <h2 className="card__title">{__('Content')}</h2>
+            <p className="card__subtitle">
+              {isStillEditing ? __('Editing a claim') : __('What are you publishing?')}{' '}
+              {__('Read our')}{' '}
+              <Button button="link" label={__('FAQ')} href="https://lbry.io/faq/how-to-publish" />{' '}
+              {__('to learn more.')}
+            </p>
+          </header>
+
           {(filePath || !!editingURI) && (
             <div className="card-media__internal-links">
               <Button

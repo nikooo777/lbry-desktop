@@ -117,28 +117,30 @@ class TransactionList extends React.PureComponent<Props> {
         </header>
 
         {!!transactionList.length && (
-          <table className="card__content table table--transactions table--stretch">
-            <thead>
-              <tr>
-                <th>{__('Amount')}</th>
-                <th>{__('Type')} </th>
-                <th>{__('Details')} </th>
-                <th>{__('Transaction')}</th>
-                <th>{__('Date')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {transactionList.map(t => (
-                <TransactionListItem
-                  key={`${t.txid}:${t.nout}`}
-                  transaction={t}
-                  reward={rewards && rewards[t.txid]}
-                  isRevokeable={this.isRevokeable(t.txid, t.nout)}
-                  revokeClaim={this.revokeClaim}
-                />
-              ))}
-            </tbody>
-          </table>
+          <div className="card__content">
+            <table className="table table--transactions table--stretch">
+              <thead>
+                <tr>
+                  <th>{__('Amount')}</th>
+                  <th>{__('Type')} </th>
+                  <th>{__('Details')} </th>
+                  <th>{__('Transaction')}</th>
+                  <th>{__('Date')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {transactionList.map(t => (
+                  <TransactionListItem
+                    key={`${t.txid}:${t.nout}`}
+                    transaction={t}
+                    reward={rewards && rewards[t.txid]}
+                    isRevokeable={this.isRevokeable(t.txid, t.nout)}
+                    revokeClaim={this.revokeClaim}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </React.Fragment>
     );

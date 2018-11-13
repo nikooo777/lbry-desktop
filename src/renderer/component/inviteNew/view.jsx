@@ -87,18 +87,22 @@ class InviteNew extends React.PureComponent {
             <p className="empty">{__("You have no invites.")}</p>}
         </div> */}
 
-        <FormInviteNew
-          errorMessage={errorMessage}
-          inviteNew={inviteNew}
-          isPending={isPending}
-          rewardAmount={rewardAmount}
-        />
+        <div className="card__content">
+          <FormInviteNew
+            errorMessage={errorMessage}
+            inviteNew={inviteNew}
+            isPending={isPending}
+            rewardAmount={rewardAmount}
+          />
+        </div>
 
-        <p className="help">
-          {__('Read our')}{' '}
-          <Button button="link" label={__('FAQ')} href="https://lbry.io/faq/referrals" />{' '}
-          {__('to learn more about referrals')}.
-        </p>
+        <div className="card__content">
+          <p className="help">
+            {__('Read our')}{' '}
+            <Button button="link" label={__('FAQ')} href="https://lbry.io/faq/referrals" />{' '}
+            {__('to learn more about referrals')}.
+          </p>
+        </div>
       </section>
     );
   }

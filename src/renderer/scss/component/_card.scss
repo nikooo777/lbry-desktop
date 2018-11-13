@@ -38,6 +38,9 @@
 
 
 
+//  C A R D
+//  A C T I O N S
+
 .card__actions {
   > *:not(:last-child) {
     margin-right: 1.5rem;
@@ -68,21 +71,41 @@
   padding-top: 0.5rem;
 }
 
+
+
+//  C A R D
+//  C O N T E N T
+
 .card__content {
   font-size: 1.15rem;
+  // padding-top: 2rem;
 
   p:not(:last-of-type) {
     margin-bottom: 1rem;
   }
 }
 
+
+
+//  C A R D
+//  H E A D E R
+
 .card__header {
   position: relative;
 
-  &:not(&--flat) {
-    margin-bottom: 3rem;
+  + .card__content {
+    padding-top: 2rem;
+  }
+
+  &:not(.card__header--flat) {
+    margin-bottom: 0.5rem;
   }
 }
+
+
+
+//  C A R D
+//  M E D I A
 
 .card-media__internal-links {
   top: 2rem;
@@ -90,11 +113,21 @@
   position: absolute;
 }
 
+
+
+//  C A R D
+//  M E T A
+
 .card__meta {
   color: $lbry-gray-5;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
+
+
+//  C A R D
+//  M E S S A G E
 
 .card__message {
   border-left: 0.5rem solid;
@@ -126,6 +159,7 @@
 .card__subtitle {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
+  // margin-bottom: 3rem;
 
   .media__property {
     bottom: -0.12rem;
