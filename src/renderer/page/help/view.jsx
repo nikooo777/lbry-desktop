@@ -186,6 +186,7 @@ class HelpPage extends React.PureComponent<Props, State> {
 
             <p className="card__subtitle">
               {__('Did you find something wrong? Think LBRY could add something useful and cool?')}
+              <Button button="link" label={__('Learn more')} href="https://lbry.io/faq/support" />
             </p>
           </header>
 
