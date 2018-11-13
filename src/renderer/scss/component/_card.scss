@@ -54,11 +54,18 @@
   }
 
   &--top-corner {
-    top: 2rem; right: 2rem;
-
-    padding-top: 1rem;
+    top: 0; right: 0;
     position: absolute;
   }
+}
+
+.card__actions--between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__actions--top-space {
+  padding-top: 0.5rem;
 }
 
 .card__content {
@@ -70,6 +77,8 @@
 }
 
 .card__header {
+  position: relative;
+
   &:not(&--flat) {
     margin-bottom: 3rem;
   }

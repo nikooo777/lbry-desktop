@@ -26,7 +26,7 @@ class TransactionHistoryPage extends React.PureComponent<Props> {
     return (
       <Page>
         <section className="card card--section">
-          <header className="card__header">
+          <header className="card__header card__header--flat">
             <h2
               className={`card__title ${
                 fetchingTransactions && transactions.length ? 'reloading' : ''

@@ -26,8 +26,8 @@ class DateTime extends React.PureComponent<Props> {
     this.refreshDate(this.props);
   }
 
-  componentWillReceiveProps(props) {
-    this.refreshDate(props);
+  componentWillReceiveProps() {
+    // this.refreshDate(props);
   }
 
   refreshDate(props) {

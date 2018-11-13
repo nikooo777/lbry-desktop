@@ -178,10 +178,10 @@ class FilePage extends React.Component<Props> {
             </div>
           ))}
 
-        <div className="media__content media__content--file-page">
-          <h1 className="media__title media__title--file-page">{title}</h1>
+        <div className="media__content media__content--large">
+          <h1 className="media__title media__title--large">{title}</h1>
 
-          <div className="media__properties media__properties--file-page">
+          <div className="media__properties media__properties--large">
             {isRewardContent && (
               <Icon size={20} iconColor="red" tooltip="bottom" icon={icons.FEATURED} />
             )}
@@ -189,7 +189,7 @@ class FilePage extends React.Component<Props> {
             <FilePrice badge uri={normalizeURI(uri)} />
           </div>
 
-          <div className="media__subtitle media__subtitle--file-page">
+          <div className="media__subtitle media__subtitle--large">
             <div className="media__subtitle__channel">
               <UriIndicator uri={uri} link />
             </div>
@@ -200,7 +200,7 @@ class FilePage extends React.Component<Props> {
           </div>
 
           <div className="media__actions media__actions--between">
-            <div className="media__actions__group--file-page">
+            <div className="media__actions__group--large">
               {claimIsMine ? (
                 <Button
                   button="primary"
@@ -230,13 +230,13 @@ class FilePage extends React.Component<Props> {
               />
             </div>
 
-            <div className="media__actions__group--file-page">
+            <div className="media__actions__group--large">
               <FileDownloadLink uri={uri} />
               <FileActions uri={uri} claimId={claim.claim_id} />
             </div>
           </div>
 
-          <div className="media__info--file-page">
+          <div className="media__info--large">
             <FileDetails uri={uri} />
           </div>
         </div>

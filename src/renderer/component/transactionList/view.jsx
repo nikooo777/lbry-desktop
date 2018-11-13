@@ -81,20 +81,16 @@ class TransactionList extends React.PureComponent<Props> {
           {!transactionList.length && (
             <p className="card__content">{emptyMessage || __('No transactions to list.')}</p>
           )}
-          {!slim &&
-            !!transactionList.length && (
-              <div className="card__actions">
-                <FileExporter
-                  data={transactionList}
-                  label={__('Export')}
-                  title={__('Export Transactions')}
-                  filters={['nout']}
-                  defaultPath={__('lbry-transactions-history')}
-                />
-              </div>
-            )}
-          {!slim && (
-            <div className="card__actions--top-corner">
+          {!slim && !!transactionList.length && (
+            <div className="card__actions card__actions--between card__actions--top-space">
+              <FileExporter
+                data={transactionList}
+                label={__('Export')}
+                title={__('Export Transactions')}
+                filters={['nout']}
+                defaultPath={__('lbry-transactions-history')}
+              />
+
               <FormField
                 type="select"
                 value={filterSetting || TRANSACTIONS.ALL}
