@@ -48,29 +48,27 @@ class SearchPage extends React.PureComponent<Props> {
 
     return (
       <Page noPadding>
-        <section className="search-results">
-          {query &&
-            isValid && (
-              <header className="search-results__header">
-                <h1 className="search-results__header__title">
-                  {`lbry://${query}`}
-                  <ToolTip
-                    icon
-                    body={__(
-                      'This is the resolution of a LBRY URL and not controlled by LBRY Inc.'
-                    )}
-                  >
-                    <Icon icon={icons.HELP} />
-                  </ToolTip>
-                </h1>
-                {isChannel ? (
-                  <ChannelTile size="large" uri={uri} />
-                ) : (
-                  <FileTile size="large" displayHiddenMessage uri={uri} />
-                )}
-              </header>
-            )}
-          <div className="search-results-wrapper">
+        <section className="search">
+          {query && isValid && (
+            <header className="search__header">
+              <h1 className="search__header__title">
+                {`lbry://${query}`}
+                <ToolTip
+                  icon
+                  body={__('This is the resolution of a LBRY URL and not controlled by LBRY Inc.')}
+                >
+                  <Icon icon={icons.HELP} />
+                </ToolTip>
+              </h1>
+              {isChannel ? (
+                <ChannelTile size="large" uri={uri} />
+              ) : (
+                <FileTile size="large" displayHiddenMessage uri={uri} />
+              )}
+            </header>
+          )}
+
+          <div className="search__results-wrapper">
             <FormRow alignRight>
               <FormField
                 type="number"

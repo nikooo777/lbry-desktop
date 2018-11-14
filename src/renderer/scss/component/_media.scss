@@ -8,12 +8,10 @@
   .media__title {
     @media (min-width: 601px) {
       font-size: 1.15rem;
-      // height: 4rem;
       line-height: 1.33;
     }
 
     @media (max-width: 600px) {
-      // height: 3rem;
       margin-bottom: 0.5rem;
     }
   }
@@ -33,7 +31,7 @@
   .media__channel,
   .media__date,
   .media__title {
-    height: 0.5rem !important; // TODO: FIX
+    min-height: 1rem;
   }
 
   .media__channel,
@@ -50,7 +48,7 @@
   }
 
   .media__title {
-    width: 90%;
+    width: 100%;
   }
 }
 
@@ -189,11 +187,8 @@
 .media__message {
   cursor: default;
   font-size: 0.9rem;
+  padding: 1rem;
   white-space: normal;
-
-  &:not(&--success) {
-    padding: 1rem $spacing-width;
-  }
 
   button {
     color: $lbry-teal-3;
@@ -203,16 +198,12 @@
 
 .media__message--help {
   background-color: $lbry-yellow-3;
+  margin: 1rem 3rem;
 
   html[data-theme='dark'] & {
     background-color: $lbry-yellow-4;
     color: $lbry-black;
   }
-}
-
-.media__message--success {
-  margin: $spacing-vertical * 1/3 0;
-  padding: $spacing-vertical * 1/3;
 }
 
 
@@ -368,61 +359,6 @@
     background-color: $lbry-cyan-5;
     background-image: linear-gradient(to bottom right, $lbry-teal-3, $lbry-cyan-5 100%);
   }
-
-  &.autothumb { // ?
-    color: $lbry-red-3;
-
-    &.purple {
-      background-color: #9c27b0;
-    }
-
-    &.red {
-      background-color: #e53935;
-    }
-
-    &.pink {
-      background-color: #e91e63;
-    }
-
-    &.indigo {
-      background-color: #3f51b5;
-    }
-
-    &.blue {
-      background-color: #2196f3;
-    }
-
-    &.light-blue {
-      background-color: #039be5;
-    }
-
-    &.cyan {
-      background-color: #00acc1;
-    }
-
-    &.teal {
-      background-color: #009688;
-    }
-
-    &.green {
-      background-color: #43a047;
-    }
-
-    &.yellow {
-      background-color: #ffeb3b;
-    }
-
-    &.orange {
-      background-color: #ffa726;
-    }
-  }
-}
-
-.media__thumb--no-img {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  position: relative;
 }
 
 .media__thumb--nsfw {
@@ -496,15 +432,7 @@
 
   .media__thumb {
     margin-bottom: 1rem;
-
-    &:not(&--no-img) {
-      padding-top: var(--video-aspect-ratio);
-    }
-  }
-
-  .media__thumb--no-img {
-    height: 10rem;
-    padding: initial; // hack for now, should replace with an image
+    padding-top: var(--video-aspect-ratio);
   }
 
   .media__title {
@@ -585,7 +513,7 @@
       background-image: linear-gradient(
         to bottom right,
         transparent,
-        rgba(mix($lbry-blue-3, $lbry-gray-4, 15%), 0.2) 100%
+        rgba(mix($lbry-blue-3, $lbry-black, 70%), 0.8) 100%
       );
     }
 

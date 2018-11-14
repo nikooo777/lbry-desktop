@@ -81,19 +81,7 @@
     padding: 0;
   }
 
-  &--level {
-    line-height: 2;
-  }
-
   input {
-    &[type='checkbox'] {
-      // margin-top: 4px;
-    }
-
-    &[type='radio'] {
-      // margin-top: 2px;
-    }
-
     &.paginate-channel {
       width: 35px;
     }
@@ -102,6 +90,10 @@
       width: 400px;
     }
   }
+}
+
+.form-field__input--level {
+  line-height: 2;
 }
 
 .form-field__help,
