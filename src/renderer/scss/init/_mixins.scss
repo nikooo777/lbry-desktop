@@ -1,3 +1,8 @@
+@mixin between {
+  display: flex;
+  justify-content: space-between;
+}
+
 @mixin constrict {
   max-width: 20vw;
   overflow: hidden;

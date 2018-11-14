@@ -7,11 +7,15 @@
   @include constrict;
 }
 
+.btn--disabled {
+  opacity: 0.3;
+}
+
 .btn--external-link,
 .btn--link {
   transition: color 0.2s;
 
-  &:not(:hover) {
+  &:not(.btn--disabled):not(:hover) {
     color: $lbry-teal-5;
 
     html[data-theme='dark'] & {
@@ -19,7 +23,7 @@
     }
   }
 
-  &:hover {
+  &:not(.btn--disabled):hover {
     color: $lbry-teal-3;
 
     html[data-theme='dark'] & {

@@ -23,9 +23,13 @@
 .card--section {
   padding: 2rem;
 
-  .card__content:not(:last-child) {
+  .card__content:not(:last-of-type) {
     margin-bottom: 1.5rem;
   }
+}
+
+.card--space-between {
+  @include between;
 }
 
 .card--wallet-balance {
@@ -48,8 +52,7 @@
 }
 
 .card__actions--between {
-  display: flex;
-  justify-content: space-between;
+  @include between;
 }
 
 .card__actions--bottom-corner {
@@ -104,6 +107,17 @@
 
 
 //  C A R D
+//  I N T E R N A L
+
+.card__internal-links {
+  top: 2rem;
+  right: 2rem;
+  position: absolute;
+}
+
+
+
+//  C A R D
 //  L I S T
 
 .card__list {
@@ -112,17 +126,6 @@
 
   &--rewards {
   }
-}
-
-
-
-//  C A R D
-//  M E D I A
-
-.card-media__internal-links {
-  top: 2rem;
-  right: 2rem;
-  position: absolute;
 }
 
 
