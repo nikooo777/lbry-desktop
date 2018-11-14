@@ -1,6 +1,3 @@
-.search-results {
-}
-
 .search-results-wrapper {
   padding: 2rem;
 }
@@ -49,24 +46,6 @@
 }
 
 
-
-// .search__content {
-//   padding: $spacing-width;
-// }
-
-// .search__results {
-//   margin-top: -$spacing-width;
-//   padding-bottom: $spacing-vertical;
-//   flex-flow: wrap column;
-
-//   .search-result__row {
-//     padding: $spacing-vertical 0;
-
-//     &:first-of-type {
-//       padding-top: 0;
-//     }
-//   }
-// }
 
 .search__results {
   @extend .media-group--list;

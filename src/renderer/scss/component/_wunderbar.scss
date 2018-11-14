@@ -99,14 +99,14 @@
   padding-left: $spacing-vertical;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
 
-  &--action {
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 0.1; // to vertically align because the font size is smaller
-    margin-left: 0.5rem;
-    opacity: 0.7;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
+.wunderbar__suggestion-label--action {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 0.1; // to vertically align because the font size is smaller
+  margin-left: 0.5rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  white-space: nowrap;
 }

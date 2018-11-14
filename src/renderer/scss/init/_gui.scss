@@ -63,10 +63,6 @@ input {
   }
 }
 
-textarea {
-  // font-size: 0.8rem;
-}
-
 
 
 .columns {
@@ -79,18 +75,6 @@ textarea {
 
     &:not(:last-of-type) {
       margin-right: 1.5rem;
-    }
-
-    &:not(:first-of-type):not(:last-of-type) {
-      // margin: 0 $spacing-vertical / 3;
-    }
-
-    &:first-of-type {
-      // margin-right: $spacing-vertical / 3;
-    }
-
-    &:last-of-type {
-      // margin-left: $spacing-vertical / 3;
     }
   }
 }

@@ -3,43 +3,6 @@
   text-align: left;
   word-wrap: break-word;
 
-  &--help {
-    td:nth-of-type(1) {
-      font-weight: 600;
-      min-width: 130px;
-    }
-
-    td:nth-of-type(2) {
-      @include constrict;
-    }
-  }
-
-  &--stretch {
-    width: 100%;
-  }
-
-  &--transactions {
-    td:nth-of-type(1) {
-      width: 25%;
-    }
-
-    td:nth-of-type(2) {
-      width: 20%;
-    }
-
-    td:nth-of-type(3) {
-      width: 22.5%;
-    }
-
-    td:nth-of-type(4) {
-      width: 17.5%;
-    }
-
-    td:nth-of-type(5) {
-      width: 15%;
-    }
-  }
-
   th,
   td {
     &:first-of-type {
@@ -108,6 +71,47 @@
         }
       }
     }
+  }
+}
+
+.table--help {
+  td:nth-of-type(1) {
+    font-weight: 600;
+    min-width: 130px;
+  }
+
+  td:nth-of-type(2) {
+    @include constrict;
+  }
+}
+
+.table--stretch {
+  width: 100%;
+}
+
+.table--transactions {
+  td:nth-of-type(1) {
+    width: 25%;
+  }
+
+  td:nth-of-type(2) {
+    width: 20%;
+  }
+
+  td:nth-of-type(3) {
+    width: 22.5%;
+  }
+
+  td:nth-of-type(4) {
+    width: 17.5%;
+  }
+
+  td:nth-of-type(5) {
+    width: 15%;
+  }
+
+  .media__property {
+    background-color: transparent !important;
   }
 }
 

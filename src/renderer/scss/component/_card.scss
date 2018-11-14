@@ -9,31 +9,31 @@
     background-color: rgba($lbry-white, 0.1);
     border-color: rgba($lbry-white, 0.1);
   }
+}
 
-  &--disabled {
-    opacity: 0.3;
-    pointer-events: none;
+.card--disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.card--link {
+  cursor: pointer;
+}
+
+.card--section {
+  padding: 2rem;
+
+  .card__content:not(:last-child) {
+    margin-bottom: 1.5rem;
   }
+}
 
-  &--link {
-    cursor: pointer;
-  }
-
-  &--section {
-    padding: 2rem;
-
-    .card__content:not(:last-child) {
-      margin-bottom: 1.5rem;
-    }
-  }
-
-  &--wallet-balance {
-    background-image: url('../../../static/img/stripe-background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: $lbry-white;
-    justify-content: space-between;
-  }
+.card--wallet-balance {
+  background-image: url('../../../static/img/stripe-background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $lbry-white;
+  justify-content: space-between;
 }
 
 
@@ -45,26 +45,26 @@
   > *:not(:last-child) {
     margin-right: 1.5rem;
   }
-
-  &--bottom-corner {
-    right: 2rem; bottom: 2rem;
-    position: absolute;
-  }
-
-  &--center {
-    align-items: center;
-    justify-content: center;
-  }
-
-  &--top-corner {
-    top: 0; right: 0;
-    position: absolute;
-  }
 }
 
 .card__actions--between {
   display: flex;
   justify-content: space-between;
+}
+
+.card__actions--bottom-corner {
+  right: 2rem; bottom: 2rem;
+  position: absolute;
+}
+
+.card__actions--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.card__actions--top-corner {
+  top: 0; right: 0;
+  position: absolute;
 }
 
 .card__actions--top-space {
@@ -78,7 +78,6 @@
 
 .card__content {
   font-size: 1.15rem;
-  // padding-top: 2rem;
 
   p:not(:last-of-type) {
     margin-bottom: 1rem;
@@ -99,6 +98,19 @@
 
   &:not(.card__header--flat) {
     margin-bottom: 0.5rem;
+  }
+}
+
+
+
+//  C A R D
+//  L I S T
+
+.card__list {
+  display: grid;
+  grid-gap: 1rem;
+
+  &--rewards {
   }
 }
 
@@ -137,29 +149,31 @@
     background-color: rgba($lbry-teal-1, 0.1);
     border-color: $lbry-teal-3;
   }
+}
 
-  &--error {
-    background-color: rgba($lbry-orange-1, 0.1);
-    border-color: $lbry-orange-3;
-  }
+.card__message--error {
+  background-color: rgba($lbry-orange-1, 0.1);
+  border-color: $lbry-orange-3;
+}
 
-  &--failure {
-    background-color: rgba($lbry-red-1, 0.1);
-    border-color: $lbry-red-3;
-  }
+.card__message--failure {
+  background-color: rgba($lbry-red-1, 0.1);
+  border-color: $lbry-red-3;
+}
 
-  &--success {
-    background-color: rgba($lbry-green-1, 0.1);
-    border-color: $lbry-green-3;
-  }
+.card__message--success {
+  background-color: rgba($lbry-green-1, 0.1);
+  border-color: $lbry-green-3;
 }
 
 
 
+//  C A R D
+//  S U B T I T L E
+
 .card__subtitle {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  // margin-bottom: 3rem;
 
   .media__property {
     bottom: -0.12rem;
@@ -167,17 +181,19 @@
   }
 }
 
+
+
+//  C A R D
+//  T I T L E
+
 .card__title {
   font-size: 2rem;
   font-weight: 600;
-}
 
-
-
-.card__list {
-  display: grid;
-  grid-gap: 1rem;
-
-  &--rewards {
+  .btn {
+    bottom: -0.5rem;
+    float: right;
+    font-size: 1rem;
+    position: relative;
   }
 }

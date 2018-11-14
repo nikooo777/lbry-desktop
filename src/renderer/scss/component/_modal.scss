@@ -54,23 +54,23 @@
       background-color: transparent;
     }
   }
+}
 
-  &--fullscreen {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+.modal--fullscreen {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 
-    background-color: rgba($lbry-gray-1, 0.5);
-    padding: $spacing-vertical;
-    overflow-y: scroll;
-    position: absolute;
+  background-color: rgba($lbry-gray-1, 0.5);
+  padding: $spacing-vertical;
+  overflow-y: scroll;
+  position: absolute;
 
-    .main {
-      // I will come back to these when I do media queries
-      // They should be variables
-      padding: 130px 80px 0 80px;
-    }
+  .main {
+    // I will come back to these when I do media queries
+    // They should be variables
+    padding: 130px 80px 0 80px;
   }
 }
 
@@ -81,16 +81,16 @@
     height: 0;
     transition: height var(--animation-duration) var(--animation-style);
   }
+}
 
-  &--after-open {
-    .modal--fullscreen {
-      height: 100vh;
-    }
+.ReactModal__Overlay--after-open {
+  .modal--fullscreen {
+    height: 100vh;
   }
+}
 
-  &--before-close {
-    height: 0;
-  }
+.ReactModal__Overlay--before-close {
+  height: 0;
 }
 
 .modal__header {

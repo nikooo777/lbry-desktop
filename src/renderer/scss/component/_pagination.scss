@@ -24,24 +24,24 @@
     cursor: pointer;
   }
 
-  &--break {
-    opacity: 0.3;
-  }
-
-  &--previous,
-  &--next {
-    bottom: -0.4rem;
-    font-size: 2.5rem;
-    line-height: 1;
-    position: relative;
-  }
-
-  &--selected {
-    background-color: $lbry-teal-5;
-    color: $lbry-white;
-  }
-
   > a {
     display: block;
   }
+}
+
+.pagination__item--break {
+  opacity: 0.3;
+}
+
+.pagination__item--previous,
+.pagination__item--next {
+  bottom: -0.4rem;
+  font-size: 2.5rem;
+  line-height: 1;
+  position: relative;
+}
+
+.pagination__item--selected {
+  background-color: $lbry-teal-5;
+  color: $lbry-white;
 }

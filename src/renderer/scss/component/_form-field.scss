@@ -14,29 +14,6 @@
     align-items: flex-end;
   }
 
-  &--centered {
-    justify-content: center;
-  }
-
-  &--padded {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
-  &--right {
-    justify-content: flex-end;
-  }
-
-  &--stretch {
-    flex: 1;
-  }
-
-  &--vertically-centered {
-    align-items: center;
-  }
-
-
-
   .form-field {
     &:not(:first-of-type) {
       padding-left: 1rem;
@@ -57,6 +34,27 @@
   input + button {
     margin-left: 1rem;
   }
+}
+
+.form-row--centered {
+  justify-content: center;
+}
+
+.form-row--padded {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.form-row--right {
+  justify-content: flex-end;
+}
+
+.form-row--stretch {
+  flex: 1;
+}
+
+.form-row--vertically-centered {
+  align-items: center;
 }
 
 .form-field.form-field--disabled {

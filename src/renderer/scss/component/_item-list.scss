@@ -17,15 +17,15 @@
   &--cutoff {
     margin-right: $spacing-vertical;
   }
+}
 
-  &--cutoff {
-    max-width: 350px;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+.item-list__item--cutoff {
+  max-width: 350px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-  &--selected {
-    background-color: $lbry-gray-1;
-  }
+.item-list__item--selected {
+  background-color: $lbry-gray-1;
 }

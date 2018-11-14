@@ -89,18 +89,18 @@
       width: 0.5rem;
     }
   }
+}
 
-  &--title {
-    margin-bottom: 0.25rem;
-    padding-top: 2rem;
+.navigation__link--title {
+  margin-bottom: 0.25rem;
+  padding-top: 2rem;
 
-    color: $lbry-gray-5;
-    cursor: default;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
-  }
+  color: $lbry-gray-5;
+  cursor: default;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
 }
 
 .navigation__link__items {
